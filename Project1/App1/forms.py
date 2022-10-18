@@ -1,4 +1,5 @@
 from django import forms
+from .models import GeeksModel
    
 # creating a form 
 class InputForm(forms.Form):
@@ -10,7 +11,21 @@ class InputForm(forms.Form):
                      )
     password = forms.CharField(widget = forms.PasswordInput())
 
-# create a form
+"""# create a form
 class GeeksForm(forms.Form):
     title = forms.CharField()
-    description = forms.CharField()
+    description = forms.CharField()"""
+
+
+class GeeksForm(forms.ModelForm):
+ 
+    # create meta class
+    class Meta:
+        # specify model to be used
+        model = GeeksModel
+ 
+        # specify fields to be used
+        fields = [
+            "title",
+            "description",
+        ]
